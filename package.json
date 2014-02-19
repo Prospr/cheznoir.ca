@@ -1,0 +1,14 @@
+{
+  "name": "cheznoir-theme",
+  "version": "0.0.1",
+  "dependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-shopify": "~0.3.0",
+    "grunt-contrib-compass": "~0.5.0",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-imagemin": "~0.4.1",
+    "matchdep": "~0.1.2"
+  }
+}
