@@ -5,3 +5,38 @@
 // CSS, by its very nature, is used to lay elements out on the page.
 // However, there is a distinction between layouts dictating the major and minor components of a page.
 // The minor components such as a callout, or login form, or a navigation item sit within the scope of major components such as a header or footer.
+
+/* Utility classes: Hidden, float lef, float right, etc. */
+
+.hidden { display: none; }
+.left { float: left; }
+.right { float: right; }
+
+/* Styling #site-title as it uses h1 on home page and span on other pages. */
+
+#site-title {
+	font-size: 2em;
+	font-weight: bold;
+	line-height: 1.5;
+	margin: 0;
+	padding: 0;
+}
+
+/* Override to globally-hosted search.css on the /search page */
+
+#searchresults input {
+	width: auto;
+}
+
+//susy container
+.container {
+	@include container;
+	//@include susy-grid-background;
+	position: relative;
+}
+
+.carousel-item img {
+	width: 100%;
+	height: auto;
+	display: block;
+}

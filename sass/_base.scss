@@ -7,3 +7,19 @@
 // or a child selector, along with any pseudo-classes.
 // It doesn't include any class or ID selectors.
 // It is defining the default styling for how that element should look in all occurrences on the page.
+
+/* Hiding placeholder text on focus in webkit, thanks to http://www.kolodvor.net/2012/03/23/webkit-placeholder-attribute-behavior */
+input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder { color:transparent; }
+
+a {
+	@include link-colors ($normal, $hover, $active, $visited, $focus);
+}
+
+body {
+	line-height: 1.5;
+	color: $light;
+	font-family: $sans;
+	font-size: 100%;
+	background: $dark1;
+}
+

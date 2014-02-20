@@ -16,6 +16,17 @@ Example: the h2 element should have the same size and color in:
   {{ page.content }}
 </div>
 
+<div class="carousel carousel-slide" data-transition="slide">
+	<div>
+		{{ 'carousel1.jpg' | asset_url | img_tag }}
+	</div>
+	<div>
+		{{ 'carousel2.jpg' | asset_url | img_tag }}
+	</div>
+</div>
+
+<h2>Featured Products</h2>
+
 {% assign collection = collections.frontpage %}
 
 <ul class="grid clearfix">
@@ -25,3 +36,56 @@ Example: the h2 element should have the same size and color in:
 <p>You have no products in your Frontpage collection. <a href="http://www.shopify.com/admin/custom_collections">Add some.</a></p>
 {% endfor %}
 </ul>
+
+{% if settings.show_blog %}
+<div class="blogspace">
+  <h2 class="smooth widget-title" id="blog-title">
+    {{ settings.blog_title }} 
+  </h2>
+
+  <ul id="blog" class="clearfix">
+    {% for article in blogs[settings.blog].articles limit: settings.blog_limit %}
+      <li id="{{ article.id }}" class="article {% if forloop.first %}first{% endif %} {% if forloop.last %}last{% endif %}">
+        <em class="article-date accent-text">{{ article.published_at | date: "%B %d, %Y" }}</em>
+        <h3 class="article-title smooth"><a href="{{article.url}}">{{ article.title }}</a></h3>
+        <div class="article-content rte">
+          {% if article.excerpt.size > 0 %}
+            {{ article.excerpt }}
+          {% else %}
+            <p>{{ article.content | strip_html | truncatewords: 50 }}</p>
+          {% endif %}
+        </div>
+        <a class="read-more accent-text" href="{{ article.url }}">{{ settings.blog_rm_label }} →</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+{% if settings.show_ads %}
+<div class="promo-area">
+	<ul>
+		<li><a href="{{ settings.promo-1-link }}"><img src="{{ 'promo-1.jpg' | asset_url }}" alt="Promotion"></a></li>
+		<li><a href="{{ settings.promo-2-link }}"><img src="{{ 'promo-2.jpg' | asset_url }}" alt="Promotion"></a></li>
+		<li><a href="{{ settings.promo-3-link }}"><img src="{{ 'promo-3.jpg' | asset_url }}" alt="Promotion"></a></li>
+		<li><a href="{{ settings.promo-4-link }}"><img src="{{ 'promo-4.jpg' | asset_url }}" alt="Promotion"></a></li>
+	</ul>
+</div>
+{% endif %}
+
+{% if settings.show_test %}
+<div class="test-area">
+	<h2>Testimonials</h2>
+	<p>
+	{{ settings.test-text }}
+	<br>
+	{{ settings.text-user }}
+	</p>
+	<h5>What they loved:</h4>
+	<a href="{{ settings.test-url }}">
+		<img src="{{ 'test-pic.jpg' | asset_url }}" alt="">
+		<h3>{{ settings.test-item }}</h3>
+		<h4>{{ settings.test-price }}</h4>
+	</a>
+</div>
+{% endif %}

@@ -31,14 +31,14 @@ module.exports = function(grunt){
 		    }//dynamic
 		},//imagemin
 		shopify: {
-	    options: {
-	      api_key: 'b3b1c57c536f231d6d85882c16a1ad1d',
-	      password: 'ObviouslyNotThePassword',
-	      url: 'chez-noir.myshopify.com',
-	      base: '',
-	      theme: '6602185'
-	    }//options
-	  },//shopify
+			options: {
+				api_key: 'b3b1c57c536f231d6d85882c16a1ad1d',
+				password: 'fd41e8dd71cf20658995ff026bc4df03',
+				url: 'chez-noir.myshopify.com',
+				base: '',
+				theme: '6602185'
+			}//options
+		},//shopify
 		watch: {
 			scripts: {
 				files: ['js/*.js'],
@@ -54,7 +54,7 @@ module.exports = function(grunt){
 				tasks: ['imagemin']
 			},//images
 			shopify: {
-				files: ['assets/**', 'layout/**', 'snippets/**', 'templates/**', 'config/**'],
+				files: ['assets/**', 'layout/**', 'templates/**', 'config/**'],
 				tasks: ['shopify']
 			}//shopify
 		}//watch

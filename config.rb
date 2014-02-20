@@ -24,3 +24,10 @@ color_output = false
 # sass-convert -R --from scss --to sass sass scss && rm -rf sass && mv scss sass
 # sass lovers must then remember to comment out the line below:
 preferred_syntax = :scss
+
+on_stylesheet_saved do |filename|
+  s = filename + ".liquid"
+  puts "copying to: " + s
+  FileUtils.cp(filename, s)
+  puts "removing: " + filename
+end

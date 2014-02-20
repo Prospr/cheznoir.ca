@@ -1,3 +1,49 @@
 // ===============================================
 // All variables used in the theme
 // ===============================================
+
+// greyscale
+$black: rgb(0, 0, 0);
+$darkGrey: lighten($black, 25%);
+$grey: lighten($black, 50%);
+$lightGrey: lighten($black, 75%);
+$lighterGrey: lighten($black, 90%);
+$white: rgb(255, 255, 255);
+
+//brand colours
+$darkAccent: #B5141B;
+$lightAccent: #F60A20;
+$dark1: #1A1A1C;
+$dark2: #272628;
+$dark3: #3F3F40;
+$light: #F4F5F5;
+
+// links
+$normal: $light;
+$hover: $light;
+$active: $light;
+$visited: $light;
+$focus: $light;
+
+//fonts
+$sans: jaf-facitweb, sans-serif;
+$serif: adelle, serif;
+
+// z-indexes
+$negative: -1;
+$zero: 0;
+$devilish: 666;
+$leet: 1337;
+$over9000: 9001;
+
+// susy
+$total-columns  : 12;             // a 12-column grid
+$column-width   : 5em;            // each column is 4em wide
+$gutter-width   : 1em;            // 1em gutters between columns
+$grid-padding   : $gutter-width;  // grid-padding equal to gutters
+
+
+// susy breakpoints
+$small: 30em;
+$medium: 47em;
+$large: 75em;
