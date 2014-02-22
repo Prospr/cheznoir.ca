@@ -68,6 +68,34 @@
   }
 }
 
+// carousel nav on homepage
+.carousel-nav {
+  font-family: FontAwesome;
+  display: none;
+
+  a {
+    display: block;
+    position: absolute;
+    font-size: 2em;
+    padding: 0.5em 0.9em;
+    top: 50%;
+    margin-top: -1.25em;
+    z-index: $devilish;
+    font-weight: 300;
+    background-color: $dark1;
+    opacity: 0.5;
+    @include border-radius (2em);
+  }
+
+  .prev {
+    left: 2em;
+  }
+
+  .next {
+    right: 2em;
+  }
+}
+
 // sub-menu styles
 .sub-nav {
   list-style: none;
