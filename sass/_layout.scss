@@ -31,12 +31,169 @@
 //susy container
 .container {
 	@include container;
-	//@include susy-grid-background;
+	// @include susy-grid-background;
 	position: relative;
 }
 
-.carousel-item img {
-	width: 100%;
-	height: auto;
-	display: block;
+// setting box-sizing to what it should be
+* {
+	@include box-sizing(border-box);
 }
+
+// ----------------------------
+// Header
+// ----------------------------
+
+	.utility-bar {
+		font-family: $sans;
+		font-size: 1em;
+		font-weight: 300;
+		background-color: $dark2;
+		height: 3.5em;
+
+		.header-email {
+			display: none;
+			float: left;
+			margin: 1em;
+			margin-right: 0em;
+		}
+
+		.header-tel {
+			display: block;
+			float: left;
+			margin: 1em;
+		}
+
+		p {
+			display: block;
+			float: right;
+			margin: 0.75em 1.5em;
+			margin-left: 0em;
+
+			.hide-on-mobile {
+				display: none;
+			}
+
+			i {
+				font-size: 2em;
+			}
+		}
+	}
+
+	#logo {
+		display: block;
+
+		img {
+			display: block;
+			margin: 1em auto;
+		}
+	}
+
+	form[role="search"] {
+		margin: 0 auto;
+		font-size: 1em;
+		max-width: 15em;
+		@include clearfix;
+
+		#search-field {
+			float: left;
+			font-size: 0.85em;
+			width: 13.5em;
+			color: $lightGrey;
+		
+			&:focus {
+				color: $dark1;
+			}
+		}
+
+		#search-submit {
+			float: right;
+			font-weight: 400;
+			color: $light;
+			background-color: $dark3;
+			width: 2.5em;
+			padding: 0.4em 0.6em;
+			font-family: FontAwesome;
+			border: none;
+		}
+	}
+
+	nav[role="navigation"] {
+		margin: 1em 0;
+		background-color: $dark2;
+		min-height: 3.375em;
+		
+		.nav-title {
+			display: block;
+			cursor: pointer;
+			padding: 0.2em 0;
+			@include clearfix;
+
+			div {
+				width: 13.5em;
+				margin: 0 auto;
+				@include clearfix;
+			}
+
+			h2 {
+				float: left;
+				@include no-user-select;
+			}
+		}
+
+		ul.nav {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			margin-top: -2em;
+			@include single-transition(all, 0.3s, ease);
+			@include no-user-select;
+
+		>li {
+				text-align: center;
+				font-family: $serif;
+				font-size: 1.2em;
+				height: 0;
+				opacity: 0;
+				pointer-events: none;
+				@include single-transition(all, 0.3s, ease);
+				
+			 >a {
+					display: block;
+					padding: 0.635em;
+				}
+
+				&.active>a, &.hover>a {
+					color: $lightAccent;
+				}
+			}
+			
+			&.menu-open {
+				margin: 0;
+			}
+
+			&.menu-open>li{
+				height: auto;
+				min-height: 2.70833333em;
+				opacity: 1;
+				pointer-events: all;
+			}
+
+			li:nth-child(odd) {
+				background-color: lighten($dark2, 2%);
+			}
+
+			i {
+				@include single-transition(all, 0.3s, ease);
+				margin-left: 0.5em;
+			}
+
+			.has-dropdown.submenu-open i {
+				@include rotate3d(0,0,1,-180deg); 
+			}
+		}
+	}
+
+// ----------------------------
+// END of Header
+// ----------------------------

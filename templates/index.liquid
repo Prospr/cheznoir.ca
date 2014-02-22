@@ -42,8 +42,8 @@ Example: the h2 element should have the same size and color in:
   <h2 class="smooth widget-title" id="blog-title">
     {{ settings.blog_title }} 
   </h2>
-
-  <ul id="blog" class="clearfix">
+	
+	<ul id="blog" class="clearfix">
     {% for article in blogs[settings.blog].articles limit: settings.blog_limit %}
       <li id="{{ article.id }}" class="article {% if forloop.first %}first{% endif %} {% if forloop.last %}last{% endif %}">
         <em class="article-date accent-text">{{ article.published_at | date: "%B %d, %Y" }}</em>

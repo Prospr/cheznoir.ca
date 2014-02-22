@@ -1,3 +1,21 @@
 // =====================================
 // Mixins used in the theme. 
 // =====================================
+
+@mixin line {
+  display: block;
+  width: $button-size;
+  height: $button-size/8;
+  background: $light;
+  border-radius: $button-size/14; 
+  transition: $transition;
+}
+
+@mixin no-user-select {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}

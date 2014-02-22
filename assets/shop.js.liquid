@@ -38,4 +38,39 @@ jQuery(function($){
     return true;
   });
 
+  /* Navicon Animation Classes*/
+  /*==========================*/
+
+  $('.nav-title').click(function() {
+    var navicon = $(this).children().children('.lines-button');
+    var menu = $(this).parent().children('.nav');
+
+    if (navicon.hasClass('close')){
+      navicon.removeClass('close');
+      $('.sub-nav').removeClass('menu-open');
+    }else{
+      navicon.addClass('close');
+    }
+
+    if (menu.hasClass('menu-open')){
+      menu.removeClass('menu-open');
+    }else{
+      menu.addClass('menu-open');
+    }
+  });
+
+  $('.has-dropdown>a').click(function(){
+    event.preventDefault();
+
+    var subMenu = $(this).parent().children('.sub-nav');
+
+    if (subMenu.hasClass('menu-open')){
+      subMenu.removeClass('menu-open');
+      subMenu.parent().removeClass('submenu-open');
+    }else{
+      subMenu.addClass('menu-open');
+      subMenu.parent().addClass('submenu-open');
+    }
+  });
+
 });

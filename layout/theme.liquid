@@ -19,7 +19,7 @@
 
   <link rel="canonical" href="{{ canonical_url }}" />
 
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   {% include 'open-graph-tags' %}
 
@@ -62,28 +62,37 @@
 
     <header>
       
-      <a class="header-email" href="mailto:info@cheznoir.ca">Email: cheznoir.ca</a>
-      <a class="header-tel" href="tel:4166990699">Tel: (416) 699-0699</a>
+      <div class="utility-bar">
+        <a class="header-email" href="mailto:info@cheznoir.ca">Email: cheznoir.ca</a>
+        <a class="header-tel" href="tel:4166990699">Tel: (416) 699-0699</a>
 
-      {% if shop.customer_accounts_enabled %}
-      <p class="customer-links">
-        {% if customer %}
-          <i class="fa fa-user"></i>Logged in as <a href="/account">{{ customer.first_name }}</a> · {{ 'Log out' | customer_logout_link }}
-        {% else %}
-          <a href="/account/login"><i class="fa fa-user"></i></a>
-          {{ 'Log in' | customer_login_link }}
-          {% if shop.customer_accounts_optional %}
-          or {{ 'Create an account' | customer_register_link }}
+        {% if shop.customer_accounts_enabled %}
+        <p class="customer-links">
+          {% if customer %}
+            <a href="/account"><i class="fa fa-user"></i></a>
+            <span class="hide-on-mobile">
+              Logged in as <a href="/account">{{ customer.first_name }}</a> · {{ 'Log out' | customer_logout_link }}
+            </span>
+          {% else %}
+            <a href="/account/login"><i class="fa fa-user"></i></a>
+            <span class="hide-on-mobile">
+              {{ 'Log in' | customer_login_link }}
+              {% if shop.customer_accounts_optional %}
+              or {{ 'Create an account' | customer_register_link }}
+            </span>
+            {% endif %}
           {% endif %}
+        </p>
         {% endif %}
-      </p>
-      {% endif %}
-      
-      <p class="checkout-link">
-        <a href="/cart"><i class="fa fa-shopping-cart"></i></a>
-        <a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>  · 
-        <a href="/cart">Check out</a>
-      </p>
+        
+        <p class="checkout-link">
+          <a href="/cart"><i class="fa fa-shopping-cart"></i></a>
+          <span class="hide-on-mobile">
+            <a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>  · 
+            <a href="/cart">Check out</a>
+          </span>
+        </p>
+      </div>
       
       {% if settings.use_logo %}
       <a id="logo" href="/" role="banner">
@@ -100,7 +109,7 @@
 
       <form action="/search" method="get" class="search-form" role="search">
         <input name="q" type="text" id="search-field" placeholder="Search store..." class="hint" />
-        <input type="submit" id="search-submit" value="Search" />
+        <input type="submit" id="search-submit" value="&#xf002;" />
       </form>
       
       {% comment %}
@@ -116,6 +125,14 @@
       {% endcomment %}
       
       <nav role="navigation">
+        <div class="nav-title">
+          <div>
+            <button type="button" role="button" aria-label="Toggle Navigation" class="lines-button x">
+              <span class="lines"></span>
+            </button>
+            <h2>Navigation</h2>
+          </div>
+        </div>
         <ul class="nav">
           {% for link in linklists.main-menu.links %}
           {% assign has_sub_menu = false %}
@@ -133,10 +150,10 @@
             {% assign has_sub_categories = true %}
           {% endif %}
           <li class="nav-item{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if link.active or parent_link_active %} active{% endif %}{% if has_sub_menu or has_sub_categories %} has-dropdown{% endif %}">
-            {{ link.title | link_to: link.url }}
+            <a href="{{ link.url }}">{{ link.title }}{% if has_sub_menu or has_sub_categories %}<i class="fa fa-angle-down"></i>{% endif %}</a>
             {% if has_sub_menu or has_sub_categories %}
             <ul class="sub-nav">
-              <li class="sub-nav-niblet"></li>
+              <li class="sub-nav-item hide-on-desktop">{{ "Show All" | link_to: link.url }}</li>
               {% if has_sub_menu %}
                 {% for l in linklists[child_list_handle].links %}
                 <li class="sub-nav-item{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if l.active %} active{% endif %}">

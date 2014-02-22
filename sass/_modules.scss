@@ -8,3 +8,110 @@
 // Modules sit inside Layout components.
 // Modules can sometimes sit within other Modules, too.
 // Each Module should be designed to exist as a standalone component.
+
+// scaling carousel images
+.carousel-item img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+ 
+.lines-button {
+  display: block;
+  float: left;
+  padding: $button-size/1.5 $button-size/4;
+  transition: .3s;
+  cursor: pointer;
+  background-color: $dark2;
+  border: none;
+  outline: none;
+  @include no-user-select;
+}
+
+.lines {
+   
+  //create middle line
+  @include line;
+  position: relative; 
+ 
+  /*create the upper and lower lines as pseudo-elements of the middle line*/
+  &:before, &:after {
+   
+   @include line;
+    position: absolute;
+      left:0;
+    content: '';
+    transform-origin: $button-size/14 center;
+  }
+  &:before { top: $button-size/4; }
+  &:after { top: -$button-size/4; }
+}
+
+.lines-button.x.close .lines{
+ 
+  /*hide the middle line*/
+  background: transparent;
+
+  /*overlay the lines by setting both their top values to 0*/
+  &:before, &:after{
+    transform-origin: 50% 50%;
+    top:0;
+    width: $button-size;
+  }
+
+  // rotate the lines to form the x shape
+  &:before{
+    @include rotate3d(0,0,1,45deg); 
+  }
+  &:after{
+    @include rotate3d(0,0,1,-45deg); 
+  }
+}
+
+// sub-menu styles
+.sub-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: -2em;
+  @include single-transition(all, 0.3s, ease);
+  @include no-user-select;
+  @include clearfix;
+
+  >li {
+    text-align: center;
+    font-family: $serif;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+    @include single-transition(all, 0.3s, ease);
+    
+    >a {
+      display: block;
+      padding: 0.635em;
+    }
+
+    &.active a, &.hover a {
+      color: $lightAccent;
+    }
+  }
+  
+  &.menu-open {
+    margin: 0;
+  }
+
+  &.menu-open li{
+    height: 2.70833333em;
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+// ----------------------------
+// Rich Text Editor Styles
+// ----------------------------
+
+.rte {
+  font-family: $sans;
+  margin: 1em 0;
+}
