@@ -156,6 +156,7 @@
 				height: 0;
 				opacity: 0;
 				pointer-events: none;
+				border-top: solid 1px $dark3;
 				@include single-transition(all, 0.3s, ease);
 				
 			 >a {
@@ -179,21 +180,18 @@
 				pointer-events: all;
 			}
 
-			li:nth-child(odd) {
-				background-color: lighten($dark2, 2%);
-			}
-
 			i {
 				@include single-transition(all, 0.3s, ease);
 				margin-left: 0.5em;
 			}
 
-			.has-dropdown.submenu-open i {
-				@include rotate3d(0,0,1,-180deg); 
+			.has-dropdown.submenu-open {
+				a {
+					border-bottom: dashed 1px $dark3;
+				}
+				i {
+					@include rotate3d(0,0,1,-180deg); 
+				}
 			}
 		}
 	}
-
-// ----------------------------
-// END of Header
-// ----------------------------

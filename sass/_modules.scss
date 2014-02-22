@@ -112,6 +112,7 @@
     height: 0;
     opacity: 0;
     pointer-events: none;
+    background-color: lighten($dark2, 2%);
     @include single-transition(all, 0.3s, ease);
     
     >a {
