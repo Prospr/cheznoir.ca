@@ -125,9 +125,31 @@ jQuery(function($){
       subMenu.removeClass('menu-open');
       subMenu.parent().removeClass('submenu-open');
     }else{
+      // clearing classes from everything else before opening the one clicked
+      $('.sub-nav.menu-open').removeClass('menu-open');
+      $('.submenu-open').removeClass('submenu-open');
+
       subMenu.addClass('menu-open');
       subMenu.parent().addClass('submenu-open');
     }
   });
+
+  function dynamicTruncate () {
+    $('.prod-name').each(function() {
+      var wrapHeight = $(this).height();
+      var textHeight = $(this).children('.height-check').height();
+
+      // the +1 is just for possible rounding errors
+      if (wrapHeight < textHeight + 1){
+        $(this).children().css('line-height', '100%');
+      }else{
+        $(this).children().css('line-height', '300%');
+      }
+    });
+  }
+
+  dynamicTruncate();
+
+  $( window ).resize( dynamicTruncate );
 
 });

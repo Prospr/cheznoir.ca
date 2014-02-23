@@ -54,7 +54,7 @@ module.exports = function(grunt){
 				tasks: ['imagemin']
 			},//images
 			shopify: {
-				files: ['assets/**', 'layout/**', 'templates/**', 'config/**'],
+				files: ['assets/**', 'layout/**', 'templates/**', 'config/**', 'snippets/**'],
 				tasks: ['shopify']
 			}//shopify
 		}//watch

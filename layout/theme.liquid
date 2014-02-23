@@ -184,7 +184,7 @@
       {{ content_for_layout }}
     </div>
 
-    <footer>
+    <footer class="page-footer">
   
       {% if linklists.footer.links.size > 0 %}
       <h2>Useful Links</h2>
@@ -196,15 +196,45 @@
       {% endif %}
 
       <h2>Spread the Love</h2>
-      <ul>
+      <ul class="social-links">
         <li><a href="http://twitter.com/Chez_Noir"><i class="fa fa-twitter-square"></i></a></li>
         <li><a href="https://www.facebook.com/ChezNoir"><i class="fa fa-facebook-square"></i></a></li>
         <li><a href="http://plus.google.com/+ChezNoirToronto" rel="publisher"><i class="fa fa-google-plus-square"></i></a></li>
         <li><a href="http://pinterest.com"><i class="fa fa-pinterest-square"></i></a></li>
       </ul>
+
+      <h2>Love the News?</h2>
+      <div class="email-signup">
+        <!-- Begin MailChimp Signup Form -->
+        <div id="mc_embed_signup">
+          <form action="http://cheznoir.us5.list-manage2.com/subscribe/post?u=50abaad9b31137810a8ffde8e&amp;id=f211a1d5f5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div class="mc-field-group">
+              <label for="mce-EMAIL">Email Address </label>
+              <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+            </div>
+            <div class="mc-field-group">
+              <label for="mce-CGENDER">Receive Emails About... </label>
+              <select name="CGENDER" class="required" id="mce-CGENDER">
+                <option value=""></option>
+                <option value="Male &amp; Female Clothing">Male &amp; Female Clothing</option>
+                <option value="Female Clothing">Female Clothing</option>
+                <option value="Male Clothing">Male Clothing</option>
+              </select>
+            </div>
+            <div id="mce-responses" class="clear">
+              <div class="response" id="mce-error-response" style="display:none"></div>
+              <div class="response" id="mce-success-response" style="display:none"></div>
+            </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+              <div style="position: absolute; left: -5000px;"><input type="text" name="b_50abaad9b31137810a8ffde8e_f211a1d5f5" value=""></div>
+            <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+          </form>
+        </div>
+
+        <!--End mc_embed_signup-->
+      </div>
       
       <p role="contentinfo">
-        Copyright &copy; {{ "now" | date: "%Y" }} {{ shop.name }}.<br>
+        Copyright &copy; {{ "now" | date: "%Y" }} {{ shop.name }}.<br><br>
         Site Designed, Developed &amp; Maintained by <a href="http://prospr.ca">Prospr</a>
       </p>
 

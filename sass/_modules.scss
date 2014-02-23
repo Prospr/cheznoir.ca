@@ -113,6 +113,7 @@
     opacity: 0;
     pointer-events: none;
     background-color: lighten($dark2, 2%);
+    border-top: solid 1px $dark3;
     @include single-transition(all, 0.3s, ease);
     
     >a {
@@ -143,4 +144,61 @@
 .rte {
   font-family: $sans;
   margin: 1em 0;
+}
+
+// ----------------------------
+// Product Grid
+// ----------------------------
+
+.grid {
+  list-style: none;
+  padding: 0 2em;
+
+  li {
+    width: 100%;
+
+    .prod-image-wrap {
+      width: 100%;
+      max-width: 20em;
+      margin: 0 auto;
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+
+    .prod-caption {
+      font-family: $sans;
+      text-align: center;
+      width: 100%;
+      max-width: 20em;
+      margin: 1em auto 2em auto;
+      padding-bottom: 1em;
+      border-bottom: solid 1px $dark3;
+
+      .prod-name {
+        color: $lightAccent;
+        font-size: 1.3em;
+        display: block;
+        font-weight: 400;
+        height: 2.884615em;
+        overflow: hidden;
+        margin-bottom: 0.769230769em;
+        @include single-transition(all, 0.3s, ease);
+
+        span {
+          line-height: 220%;
+        }
+      }
+
+      .prod-price {
+        color: $light;
+        font-size: 1.1em;
+        display: block;
+        font-weight: 300;
+      }
+    }
+  }
 }

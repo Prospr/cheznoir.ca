@@ -137,6 +137,7 @@
 
 			h2 {
 				float: left;
+				margin: 0;
 				@include no-user-select;
 			}
 		}
@@ -156,7 +157,7 @@
 				height: 0;
 				opacity: 0;
 				pointer-events: none;
-				border-top: solid 1px $dark3;
+				border-top: solid 1px $dark1;
 				@include single-transition(all, 0.3s, ease);
 				
 			 >a {
@@ -185,13 +186,186 @@
 				margin-left: 0.5em;
 			}
 
-			.has-dropdown.submenu-open {
-				a {
-					border-bottom: dashed 1px $dark3;
-				}
-				i {
-					@include rotate3d(0,0,1,-180deg); 
-				}
+			.has-dropdown.submenu-open i {
+				@include rotate3d(0,0,1,-180deg); 
 			}
 		}
 	}
+
+// ----------------------------
+// Footer
+// ----------------------------
+
+.page-footer {
+	h2:first-child {
+		margin: 0;
+	}
+	h2 {
+		font-size: 1.5em;
+	}
+	ul[role="navigation"]{
+		list-style: none;
+		padding: 0em 2em;
+
+		li {
+			font-family: $sans;
+			margin: 0.3em;
+		}
+	}
+
+	.social-links {
+		font-size: 2.5em;
+		width: 4em;
+		margin: 0 auto;
+		@include horizontal-list;
+	}
+
+	.email-signup {
+		text-align: center;
+
+		label {
+			display: block;
+			text-align: center;
+			font-size: 1em;
+			margin-top: 1em;
+		}
+
+		input {
+			margin: 0 auto;
+		}
+		
+		input[type="submit"]{
+			margin-top: 1em;
+		}
+	}
+
+	p {
+		font-family: $sans;
+		text-align: center;
+		font-size: 0.7em;
+		color: $dark3;
+
+		a {
+			color: $darkAccent;
+			font-weight: 600;
+		}
+	}
+}
+
+// ----------------------------
+// Module: Blog Area
+// ----------------------------
+
+.blogspace {
+	background-color: $light;
+
+	h2 {
+		color: $dark1;
+		padding-top: 0.5em;
+	}
+
+	#blog {
+		list-style: none;
+		padding: 0;
+		padding-bottom: 1.5em;
+		@include clearfix;
+
+		li {
+			width: 100%;
+			max-width: 30em;
+			margin: 0 auto;
+			padding: 1em 2em;
+			
+			h3 {
+				text-align: left;
+
+				a {
+					color: $dark1;
+				}
+			}
+
+			em {
+				color: $darkAccent;
+			}
+
+			div p{
+				color: $dark1;
+				font-family: $serif;
+				line-height: 1.3;
+			}
+
+			.read-more {
+				background-color: $dark1;
+				padding: 0.6em 1em;
+				@include border-radius (0.2em);
+			}
+		}
+	}
+}
+
+// ----------------------------
+// Module: Promo Blocks
+// ----------------------------
+
+.promo-area {
+	ul {
+		list-style: none;
+		padding: 0 1em;
+
+		li {
+			width: 100%;
+			max-width: 15em;
+			margin: 1em auto;
+
+			img {
+				width: 100%;
+				height: auto;
+				display: block;
+			}
+		}
+	}
+}
+
+// ----------------------------
+// Module: Testimonial
+// ----------------------------
+
+.test-area {
+	background-color: $light;
+
+	h2 {
+		color: $dark1;
+		padding-top: 0.5em;
+	}
+
+	p {
+		color: $dark1;
+		padding: 1.5em;
+		width: 100%;
+		max-width: 30em;
+		margin: 1em auto;
+
+		.test-username {
+			float: right;
+			color: $darkAccent;
+		}
+	}
+
+	h5 {
+		color: $dark1;
+		font-family: $serif;
+		margin-bottom: 1em;
+	}
+	
+	.prod-caption {
+		border: none !important; //override styles in module (only for testimonials)
+	}
+
+	.prod-name {
+		color: $darkAccent !important; //override styles in module (only for this one place)
+	}
+
+	.prod-price {
+		color: $dark1 !important; //override styles in module (only for this one place)
+	}
+}

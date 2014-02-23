@@ -43,11 +43,11 @@ Example: the h2 element should have the same size and color in:
     {{ settings.blog_title }} 
   </h2>
 	
-	<ul id="blog" class="clearfix">
+	<ul id="blog">
     {% for article in blogs[settings.blog].articles limit: settings.blog_limit %}
       <li id="{{ article.id }}" class="article {% if forloop.first %}first{% endif %} {% if forloop.last %}last{% endif %}">
-        <em class="article-date accent-text">{{ article.published_at | date: "%B %d, %Y" }}</em>
         <h3 class="article-title smooth"><a href="{{article.url}}">{{ article.title }}</a></h3>
+        <em class="article-date accent-text">{{ article.published_at | date: "%B %d, %Y" }}</em>
         <div class="article-content rte">
           {% if article.excerpt.size > 0 %}
             {{ article.excerpt }}
@@ -55,7 +55,7 @@ Example: the h2 element should have the same size and color in:
             <p>{{ article.content | strip_html | truncatewords: 50 }}</p>
           {% endif %}
         </div>
-        <a class="read-more accent-text" href="{{ article.url }}">{{ settings.blog_rm_label }} →</a>
+        <a class="read-more accent-text" href="{{ article.url }}">{{ settings.blog_rm_label }} <i class="fa fa-long-arrow-right"></i></a>
       </li>
     {% endfor %}
   </ul>
@@ -79,13 +79,27 @@ Example: the h2 element should have the same size and color in:
 	<p>
 	{{ settings.test-text }}
 	<br>
-	{{ settings.text-user }}
+	<span class="test-username">- {{ settings.test-user }}</span>
 	</p>
 	<h5>What they loved:</h4>
-	<a href="{{ settings.test-url }}">
-		<img src="{{ 'test-pic.jpg' | asset_url }}" alt="">
-		<h3>{{ settings.test-item }}</h3>
-		<h4>{{ settings.test-price }}</h4>
-	</a>
+	<div class="grid">
+		<li>
+		  <div class="prod-image-wrap">  
+		    <a href="{{ settings.test-url }}">
+		      <img src="{{ 'test-pic.jpg' | asset_url }}" alt="" />
+		    </a>
+		  </div><!-- .prod-image-wrap -->
+		  
+		  <div class="prod-caption">
+		      <a href="{{ settings.test-url }}" title="{{ product.title }}">
+		        <span class="prod-name"><span class="height-check">{{ settings.test-item }}</span></span>
+		        <span class="prod-price">
+		          {{ settings.test-price }}
+		        </span>
+		      </a>
+		  </div><!-- .prod-caption -->
+		  
+		</li>
+	</div>
 </div>
 {% endif %}

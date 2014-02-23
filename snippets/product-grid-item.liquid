@@ -24,26 +24,21 @@ Here, for the sake of teaching, we will use 2 presentation options:
 
   <div class="prod-image-wrap">  
     <a href="{{ product.url | within: collection }}">
-      <img src="{{ product.featured_image.src | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
+      <img src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" />
     </a>
   </div><!-- .prod-image-wrap -->
   
   <div class="prod-caption">
-      <a href="{{ product.url | within: collection }}">
-        {{ product.title }}
+      <a href="{{ product.url | within: collection }}" title="{{ product.title }}">
+        <span class="prod-name"><span class="height-check">{{ product.title }}</span></span>
+        <span class="prod-price">
+          {% if product.price_varies %}From{% endif %}
+          {{ product.price | money }}
+          {% if on_sale %}
+          <s class="compare-at-price">{{ product.compare_at_price | money }}</s>
+          {% endif %}
+        </span>
       </a>
-      <span class="prod-price">
-        {% if product.price_varies %}From{% endif %}
-        {{ product.price | money }}
-        {% if on_sale %}
-        <s class="compare-at-price">{{ product.compare_at_price | money }}</s>
-        {% endif %}
-      </span>
-      {% comment %}
-      All themes by Shopify should support the Grapevine Reviews app out of the box.
-      https://apps.shopify.com/grapevine-reviews
-      {% endcomment %}
-      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
   </div><!-- .prod-caption -->
   
 </li>
