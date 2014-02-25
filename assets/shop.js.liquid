@@ -116,24 +116,31 @@ jQuery(function($){
     }
   });
 
-  $('.has-dropdown>a').click(function(){
-    event.preventDefault();
+  /* Stop page change in mobile nav */
+  /*================================*/
 
-    var subMenu = $(this).parent().children('.sub-nav');
+  if ($(window).width() < 928) {
+    $('.has-dropdown>a').click(function(){
+      event.preventDefault();
 
-    if (subMenu.hasClass('menu-open')){
-      subMenu.removeClass('menu-open');
-      subMenu.parent().removeClass('submenu-open');
-    }else{
-      // clearing classes from everything else before opening the one clicked
-      $('.sub-nav.menu-open').removeClass('menu-open');
-      $('.submenu-open').removeClass('submenu-open');
+      var subMenu = $(this).parent().children('.sub-nav');
 
-      subMenu.addClass('menu-open');
-      subMenu.parent().addClass('submenu-open');
-    }
-  });
+      if (subMenu.hasClass('menu-open')){
+        subMenu.removeClass('menu-open');
+        subMenu.parent().removeClass('submenu-open');
+      }else{
+        // clearing classes from everything else before opening the one clicked
+        $('.sub-nav.menu-open').removeClass('menu-open');
+        $('.submenu-open').removeClass('submenu-open');
 
+        subMenu.addClass('menu-open');
+        subMenu.parent().addClass('submenu-open');
+      }
+    });
+  }
+
+  /* Dynamically change size of product names */
+  /*==========================================*/
   function dynamicTruncate () {
     $('.prod-name').each(function() {
       var wrapHeight = $(this).height();

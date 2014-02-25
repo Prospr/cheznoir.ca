@@ -58,59 +58,63 @@
 
 <body id="{% if template == 'index' %}home{% else %}{{ page_title | handle }}{% endif %}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
-  <div class="container">
+  <div>
 
     <header>
       
-      <div class="utility-bar">
-        <a class="header-email" href="mailto:info@cheznoir.ca">Email: cheznoir.ca</a>
-        <a class="header-tel" href="tel:4166990699">Tel: (416) 699-0699</a>
+      <div class="full-width-wrapper bg-lg">
+        <div class="utility-bar container">
+          <a class="header-email" href="mailto:info@cheznoir.ca">Email: cheznoir.ca</a>
+          <a class="header-tel" href="tel:4166990699">Tel: (416) 699-0699</a>
 
-        {% if shop.customer_accounts_enabled %}
-        <p class="customer-links">
-          {% if customer %}
-            <a href="/account"><i class="fa fa-user"></i></a>
-            <span class="hide-on-mobile">
-              Logged in as <a href="/account">{{ customer.first_name }}</a> · {{ 'Log out' | customer_logout_link }}
-            </span>
-          {% else %}
-            <a href="/account/login"><i class="fa fa-user"></i></a>
-            <span class="hide-on-mobile">
-              {{ 'Log in' | customer_login_link }}
-              {% if shop.customer_accounts_optional %}
-              or {{ 'Create an account' | customer_register_link }}
-            </span>
+          {% if shop.customer_accounts_enabled %}
+          <p class="customer-links">
+            {% if customer %}
+              <span class="hide-on-mobile">
+                Logged in as <a href="/account">{{ customer.first_name }}</a> · {{ 'Log out' | customer_logout_link }}
+              </span>
+              <a href="/account"><i class="fa fa-user"></i></a>
+            {% else %}
+              <span class="hide-on-mobile">
+                {{ 'Log in' | customer_login_link }}
+                {% if shop.customer_accounts_optional %}
+                | {{ 'Create an account' | customer_register_link }}
+              </span>
+              <a href="/account/login"><i class="fa fa-user"></i></a>
+              {% endif %}
             {% endif %}
+          </p>
           {% endif %}
-        </p>
-        {% endif %}
-        
-        <p class="checkout-link">
-          <a href="/cart"><i class="fa fa-shopping-cart"></i></a>
-          <span class="hide-on-mobile">
-            <a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>  · 
-            <a href="/cart">Check out</a>
-          </span>
-        </p>
+          
+          <p class="checkout-link">
+            <span class="hide-on-mobile">
+              <a href="/cart">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>  · 
+              <a href="/cart">Check out</a>
+            </span>
+            <a href="/cart"><i class="fa fa-shopping-cart"></i></a>
+          </p>
+        </div>
       </div>
       
-      {% if settings.use_logo %}
-      <a id="logo" href="/" role="banner">
-        {{ 'logo.png' | asset_url | img_tag: shop.name }}
-      </a><!-- #logo -->
-      {% endif %}
-      {% if template == 'index' %}
-      <h1 id="site-title"{% if settings.use_logo %} class="hidden"{% endif %}>
-        <a href="/">{{ shop.name }}</a>
-      </h1>
-      {% else %}
-      <a id="site-title" href="/"{% if settings.use_logo %} class="hidden"{% endif %}>{{ shop.name }}</a>
-      {% endif %}
+      <div class="logo-search container">
+        {% if settings.use_logo %}
+        <a id="logo" href="/" role="banner">
+          {{ 'logo.png' | asset_url | img_tag: shop.name }}
+        </a><!-- #logo -->
+        {% endif %}
+        {% if template == 'index' %}
+        <h1 id="site-title"{% if settings.use_logo %} class="hidden"{% endif %}>
+          <a href="/">{{ shop.name }}</a>
+        </h1>
+        {% else %}
+        <a id="site-title" href="/"{% if settings.use_logo %} class="hidden"{% endif %}>{{ shop.name }}</a>
+        {% endif %}
 
-      <form action="/search" method="get" class="search-form" role="search">
-        <input name="q" type="text" id="search-field" placeholder="Search store..." class="hint" />
-        <input type="submit" id="search-submit" value="&#xf002;" />
-      </form>
+        <form action="/search" method="get" class="search-form" role="search">
+          <input name="q" type="text" id="search-field" placeholder="Search store..." class="hint" />
+          <input type="submit" id="search-submit" value="&#xf002;" />
+        </form>
+      </div>
       
       {% comment %}
       A word on drop-down menus: Shopify has no concept of drop-down menus.
@@ -124,55 +128,57 @@
       A word on sub-categories: Shopify manages sub-categories using product tags: http://docs.shopify.com/manual/configuration/store-customization/subcategories.
       {% endcomment %}
       
-      <nav role="navigation">
-        <div class="nav-title">
-          <div>
-            <button type="button" role="button" aria-label="Toggle Navigation" class="lines-button x">
-              <span class="lines"></span>
-            </button>
-            <h2>Navigation</h2>
+      <div class="full-width-wrapper bg-lg">
+        <nav role="navigation" class="container">
+          <div class="nav-title">
+            <div>
+              <button type="button" role="button" aria-label="Toggle Navigation" class="lines-button x">
+                <span class="lines"></span>
+              </button>
+              <h2>Navigation</h2>
+            </div>
           </div>
-        </div>
-        <ul class="nav">
-          {% for link in linklists.main-menu.links %}
-          {% assign has_sub_menu = false %}
-          {% assign has_sub_categories = false %}
-          {% assign parent_link_active = false %}
-          {% assign child_list_handle = link.title | handle %}
-          {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
-            {% assign has_sub_menu = true %}
-            {% for l in linklists[child_list_handle].links %}
-              {% if page_title == l.title %}
-                {% assign parent_link_active = true %}
-              {% endif %}
-            {% endfor %}
-          {% elsif link.type == 'collection_link' and link.object.all_tags.size > 0 %}
-            {% assign has_sub_categories = true %}
-          {% endif %}
-          <li class="nav-item{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if link.active or parent_link_active %} active{% endif %}{% if has_sub_menu or has_sub_categories %} has-dropdown{% endif %}">
-            <a href="{{ link.url }}">{{ link.title }}{% if has_sub_menu or has_sub_categories %}<i class="fa fa-angle-down"></i>{% endif %}</a>
-            {% if has_sub_menu or has_sub_categories %}
-            <ul class="sub-nav">
-              <li class="sub-nav-item hide-on-desktop">{{ "Show All" | link_to: link.url }}</li>
-              {% if has_sub_menu %}
-                {% for l in linklists[child_list_handle].links %}
-                <li class="sub-nav-item{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if l.active %} active{% endif %}">
-                  <a class="{% if forloop.first %}first{% elsif forloop.last %}last{% endif %}" href="{{ l.url }}">{{ l.title }}</a>
-                </li>
-                {% endfor %}
-              {% elsif has_sub_categories %}
-                {% for tag in link.object.all_tags %}
-                <li class="sub-nav-item{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if current_tags contains tag %} active{% endif %}">
-                  <a class="{% if forloop.first %}first{% elsif forloop.last %}last{% endif %}" href="{{ link.url }}/{{ tag | handle }}">{{ tag }}</a>
-                </li>
-                {% endfor %}
-              {% endif %}
-            </ul>
+          <ul class="nav">
+            {% for link in linklists.main-menu.links %}
+            {% assign has_sub_menu = false %}
+            {% assign has_sub_categories = false %}
+            {% assign parent_link_active = false %}
+            {% assign child_list_handle = link.title | handle %}
+            {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+              {% assign has_sub_menu = true %}
+              {% for l in linklists[child_list_handle].links %}
+                {% if page_title == l.title %}
+                  {% assign parent_link_active = true %}
+                {% endif %}
+              {% endfor %}
+            {% elsif link.type == 'collection_link' and link.object.all_tags.size > 0 %}
+              {% assign has_sub_categories = true %}
             {% endif %}
-          </li>
-          {% endfor %}
-        </ul>
-      </nav>
+            <li class="nav-item{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if link.active or parent_link_active %} active{% endif %}{% if has_sub_menu or has_sub_categories %} has-dropdown{% endif %}">
+              <a href="{{ link.url }}">{{ link.title }}{% if has_sub_menu or has_sub_categories %}<i class="fa fa-angle-down"></i>{% endif %}</a>
+              {% if has_sub_menu or has_sub_categories %}
+              <ul class="sub-nav">
+                <li class="sub-nav-item hide-on-desktop">{{ "Show All" | link_to: link.url }}</li>
+                {% if has_sub_menu %}
+                  {% for l in linklists[child_list_handle].links %}
+                  <li class="sub-nav-item{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if l.active %} active{% endif %}">
+                    <a class="{% if forloop.first %}first{% elsif forloop.last %}last{% endif %}" href="{{ l.url }}">{{ l.title }}</a>
+                  </li>
+                  {% endfor %}
+                {% elsif has_sub_categories %}
+                  {% for tag in link.object.all_tags %}
+                  <li class="sub-nav-item{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if current_tags contains tag %} active{% endif %}">
+                    <a class="{% if forloop.first %}first{% elsif forloop.last %}last{% endif %}" href="{{ link.url }}/{{ tag | handle }}">{{ tag }}</a>
+                  </li>
+                  {% endfor %}
+                {% endif %}
+              </ul>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
 
     </header>
 
@@ -184,55 +190,61 @@
       {{ content_for_layout }}
     </div>
 
-    <footer class="page-footer">
-  
-      {% if linklists.footer.links.size > 0 %}
-      <h2>Useful Links</h2>
-      <ul role="navigation">
-      {% for link in linklists.footer.links %}
-        <li><a href="{{ link.url }}" title="{{ link.title }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a></li>
-      {% endfor %}
-      </ul>
-      {% endif %}
-
-      <h2>Spread the Love</h2>
-      <ul class="social-links">
-        <li><a href="http://twitter.com/Chez_Noir"><i class="fa fa-twitter-square"></i></a></li>
-        <li><a href="https://www.facebook.com/ChezNoir"><i class="fa fa-facebook-square"></i></a></li>
-        <li><a href="http://plus.google.com/+ChezNoirToronto" rel="publisher"><i class="fa fa-google-plus-square"></i></a></li>
-        <li><a href="http://pinterest.com"><i class="fa fa-pinterest-square"></i></a></li>
-      </ul>
-
-      <h2>Love the News?</h2>
-      <div class="email-signup">
-        <!-- Begin MailChimp Signup Form -->
-        <div id="mc_embed_signup">
-          <form action="http://cheznoir.us5.list-manage2.com/subscribe/post?u=50abaad9b31137810a8ffde8e&amp;id=f211a1d5f5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-            <div class="mc-field-group">
-              <label for="mce-EMAIL">Email Address </label>
-              <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
-            </div>
-            <div class="mc-field-group">
-              <label for="mce-CGENDER">Receive Emails About... </label>
-              <select name="CGENDER" class="required" id="mce-CGENDER">
-                <option value=""></option>
-                <option value="Male &amp; Female Clothing">Male &amp; Female Clothing</option>
-                <option value="Female Clothing">Female Clothing</option>
-                <option value="Male Clothing">Male Clothing</option>
-              </select>
-            </div>
-            <div id="mce-responses" class="clear">
-              <div class="response" id="mce-error-response" style="display:none"></div>
-              <div class="response" id="mce-success-response" style="display:none"></div>
-            </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-              <div style="position: absolute; left: -5000px;"><input type="text" name="b_50abaad9b31137810a8ffde8e_f211a1d5f5" value=""></div>
-            <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-          </form>
+    <footer class="page-footer container">
+      <div>
+        <div>
+          {% if linklists.footer.links.size > 0 %}
+          <h2>Useful Links</h2>
+          <ul role="navigation">
+          {% for link in linklists.footer.links %}
+            <li><a href="{{ link.url }}" title="{{ link.title }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a></li>
+          {% endfor %}
+          </ul>
+          {% endif %}
         </div>
+        
+        <div>
+          <h2>Spread the Love</h2>
+          <ul class="social-links">
+            <li><a href="http://twitter.com/Chez_Noir"><i class="fa fa-twitter-square"></i></a></li>
+            <li><a href="https://www.facebook.com/ChezNoir"><i class="fa fa-facebook-square"></i></a></li>
+            <li><a href="http://plus.google.com/+ChezNoirToronto" rel="publisher"><i class="fa fa-google-plus-square"></i></a></li>
+            <li><a href="http://pinterest.com"><i class="fa fa-pinterest-square"></i></a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h2>Love the News?</h2>
+          <div class="email-signup">
+            <!-- Begin MailChimp Signup Form -->
+            <div id="mc_embed_signup">
+              <form action="http://cheznoir.us5.list-manage2.com/subscribe/post?u=50abaad9b31137810a8ffde8e&amp;id=f211a1d5f5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div class="mc-field-group">
+                  <label for="mce-EMAIL">Email Address </label>
+                  <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+                </div>
+                <div class="mc-field-group">
+                  <label for="mce-CGENDER">Receive Emails About... </label>
+                  <select name="CGENDER" class="required" id="mce-CGENDER">
+                    <option value=""></option>
+                    <option value="Male &amp; Female Clothing">Male &amp; Female Clothing</option>
+                    <option value="Female Clothing">Female Clothing</option>
+                    <option value="Male Clothing">Male Clothing</option>
+                  </select>
+                </div>
+                <div id="mce-responses" class="clear">
+                  <div class="response" id="mce-error-response" style="display:none"></div>
+                  <div class="response" id="mce-success-response" style="display:none"></div>
+                </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                  <div style="position: absolute; left: -5000px;"><input type="text" name="b_50abaad9b31137810a8ffde8e_f211a1d5f5" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+              </form>
+            </div>
 
-        <!--End mc_embed_signup-->
+            <!--End mc_embed_signup-->
+          </div>
+        </div>
       </div>
-      
       <p role="contentinfo">
         Copyright &copy; {{ "now" | date: "%Y" }} {{ shop.name }}.<br><br>
         Site Designed, Developed &amp; Maintained by <a href="http://prospr.ca">Prospr</a>

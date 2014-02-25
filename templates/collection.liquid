@@ -4,7 +4,7 @@ Important notes about pagination:
 - Never paginate by more than 50.
 {% endcomment %}
 
-{% paginate collection.products by 6 %}
+{% paginate collection.products by 16 %}
 
 {% comment %}
 Re-use the 'rte' class wherever you output content that was added by a merchant using
@@ -33,7 +33,7 @@ so in comparisons we need to escape type and vendor.
 {% endcomment %}
 {% assign type_escaped = collection.products.first.type | escape %}
 {% assign vendor_escaped = collection.products.first.vendor | escape %}
-<ul class="collection-sub-categories clearfix">
+<ul class="collection-sub-categories clearfix container">
   <li{% unless current_tags %} class="active"{% endunless %}>
     {% if collection.handle %}
     {% comment %}Good for /collections/all collection and regular collections{% endcomment %}
@@ -68,7 +68,7 @@ so in comparisons we need to escape type and vendor.
 
 <ul class="grid clearfix">
 {% for product in collection.products %}
-  {% include 'product-grid-item' with 'three-per-row' %}
+  {% include 'product-grid-item' with 'four-per-row' %}
 {% else %}
 <p>There are no products in this view.</p>
 {% endfor %}

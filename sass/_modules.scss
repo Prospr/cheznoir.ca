@@ -10,6 +10,10 @@
 // Each Module should be designed to exist as a standalone component.
 
 // scaling carousel images
+.carousel-item {
+  max-height: 42.5em;
+  overflow: hidden;
+}
 .carousel-item img {
 	width: 100%;
 	height: auto;
@@ -27,6 +31,7 @@
   outline: none;
   @include no-user-select;
 }
+
 
 .lines {
    
@@ -96,7 +101,15 @@
   }
 }
 
-// sub-menu styles
+// Promo Banner 
+.promo-banner {
+  padding: 0 1.5em;
+}
+
+
+// ----------------------------
+// Sub Menu Styles
+// ----------------------------
 .sub-nav {
   list-style: none;
   padding: 0;
@@ -121,8 +134,8 @@
       padding: 0.635em;
     }
 
-    &.active a, &.hover a {
-      color: $lightAccent;
+    &.active a, &:hover a {
+      color: $darkAccent;
     }
   }
   
@@ -143,7 +156,15 @@
 
 .rte {
   font-family: $sans;
-  margin: 1em 0;
+  margin: 1em auto;
+
+  a {
+    color: $lightAccent;
+
+    &:hover {
+      border-bottom: solid 1px $lightAccent;
+    }
+  }
 }
 
 // ----------------------------
@@ -153,14 +174,14 @@
 .grid {
   list-style: none;
   padding: 0 2em;
+  @include clearfix;
 
   li {
     width: 100%;
+    max-width: 20em;
+    margin: 0 auto;
 
     .prod-image-wrap {
-      width: 100%;
-      max-width: 20em;
-      margin: 0 auto;
 
       img {
         width: 100%;

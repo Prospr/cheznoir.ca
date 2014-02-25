@@ -12,7 +12,7 @@ Example: the h2 element should have the same size and color in:
 
 {% assign page = pages.frontpage %}
 
-<div class="rte">
+<div class="rte promo-banner container">
   {{ page.content }}
 </div>
 
@@ -25,81 +25,87 @@ Example: the h2 element should have the same size and color in:
 	</div>
 </div>
 
-<h2>Featured Products</h2>
+<h2 class="container">Featured Products</h2>
 
 {% assign collection = collections.frontpage %}
 
-<ul class="grid clearfix">
+<ul class="grid clearfix container">
 {% for product in collection.products %}
-  {% include 'product-grid-item' with 'three-per-row' %}
+  {% include 'product-grid-item' with 'four-per-row' %}
 {% else %}
 <p>You have no products in your Frontpage collection. <a href="http://www.shopify.com/admin/custom_collections">Add some.</a></p>
 {% endfor %}
 </ul>
 
 {% if settings.show_blog %}
-<div class="blogspace">
-  <h2 class="smooth widget-title" id="blog-title">
-    {{ settings.blog_title }} 
-  </h2>
-	
-	<ul id="blog">
-    {% for article in blogs[settings.blog].articles limit: settings.blog_limit %}
-      <li id="{{ article.id }}" class="article {% if forloop.first %}first{% endif %} {% if forloop.last %}last{% endif %}">
-        <h3 class="article-title smooth"><a href="{{article.url}}">{{ article.title }}</a></h3>
-        <em class="article-date accent-text">{{ article.published_at | date: "%B %d, %Y" }}</em>
-        <div class="article-content rte">
-          {% if article.excerpt.size > 0 %}
-            {{ article.excerpt }}
-          {% else %}
-            <p>{{ article.content | strip_html | truncatewords: 50 }}</p>
-          {% endif %}
-        </div>
-        <a class="read-more accent-text" href="{{ article.url }}">{{ settings.blog_rm_label }} <i class="fa fa-long-arrow-right"></i></a>
-      </li>
-    {% endfor %}
-  </ul>
+<div class="full-width-wrapper bg-light">
+  <div class="blogspace container">
+    <h2 class="smooth widget-title" id="blog-title">
+      {{ settings.blog_title }} 
+    </h2>
+  	
+  	<ul id="blog">
+      {% for article in blogs[settings.blog].articles limit: settings.blog_limit %}
+        <li id="{{ article.id }}" class="article {% if forloop.first %}first{% endif %} {% if forloop.last %}last{% endif %}">
+          <h3 class="article-title smooth"><a href="{{article.url}}">{{ article.title }}</a></h3>
+          <em class="article-date accent-text">{{ article.published_at | date: "%B %d, %Y" }}</em>
+          <div class="article-content rte">
+            {% if article.excerpt.size > 0 %}
+              {{ article.excerpt }}
+            {% else %}
+              <p>{{ article.content | strip_html | truncatewords: 50 }}</p>
+            {% endif %}
+          </div>
+          <a class="read-more accent-text" href="{{ article.url }}">{{ settings.blog_rm_label }} <i class="fa fa-long-arrow-right"></i></a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
 </div>
 {% endif %}
 
 {% if settings.show_ads %}
-<div class="promo-area">
+<div class="promo-area container">
+  <h2>Promotions</h2>
 	<ul>
 		<li><a href="{{ settings.promo-1-link }}"><img src="{{ 'promo-1.jpg' | asset_url }}" alt="Promotion"></a></li>
 		<li><a href="{{ settings.promo-2-link }}"><img src="{{ 'promo-2.jpg' | asset_url }}" alt="Promotion"></a></li>
 		<li><a href="{{ settings.promo-3-link }}"><img src="{{ 'promo-3.jpg' | asset_url }}" alt="Promotion"></a></li>
-		<li><a href="{{ settings.promo-4-link }}"><img src="{{ 'promo-4.jpg' | asset_url }}" alt="Promotion"></a></li>
 	</ul>
 </div>
 {% endif %}
 
 {% if settings.show_test %}
-<div class="test-area">
-	<h2>Testimonials</h2>
-	<p>
-	{{ settings.test-text }}
-	<br>
-	<span class="test-username">- {{ settings.test-user }}</span>
-	</p>
-	<h5>What they loved:</h4>
-	<div class="grid">
-		<li>
-		  <div class="prod-image-wrap">  
-		    <a href="{{ settings.test-url }}">
-		      <img src="{{ 'test-pic.jpg' | asset_url }}" alt="" />
-		    </a>
-		  </div><!-- .prod-image-wrap -->
-		  
-		  <div class="prod-caption">
-		      <a href="{{ settings.test-url }}" title="{{ product.title }}">
-		        <span class="prod-name"><span class="height-check">{{ settings.test-item }}</span></span>
-		        <span class="prod-price">
-		          {{ settings.test-price }}
-		        </span>
-		      </a>
-		  </div><!-- .prod-caption -->
-		  
-		</li>
-	</div>
+<div class="full-width-wrapper bg-light">
+  <div class="test-area container">
+  	<h2>Our Customers Love Us</h2>
+    <div class="size-limit-wrapper">
+    	<p>
+    	{{ settings.test-text }}
+    	<br>
+    	<span class="test-username">- {{ settings.test-user }}</span>
+    	</p>
+    	<div class="grid">
+        <h5>What they loved:</h4>
+    		<li>
+    		  <div class="prod-image-wrap">  
+    		    <a href="{{ settings.test-url }}">
+    		      <img src="{{ 'test-pic.jpg' | asset_url }}" alt="" />
+    		    </a>
+    		  </div><!-- .prod-image-wrap -->
+    		  
+    		  <div class="prod-caption">
+    		      <a href="{{ settings.test-url }}" title="{{ product.title }}">
+    		        <span class="prod-name"><span class="height-check">{{ settings.test-item }}</span></span>
+    		        <span class="prod-price">
+    		          {{ settings.test-price }}
+    		        </span>
+    		      </a>
+    		  </div><!-- .prod-caption -->
+    		  
+    		</li>
+    	</div>
+    </div>
+  </div>
 </div>
 {% endif %}

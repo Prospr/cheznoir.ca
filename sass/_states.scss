@@ -6,3 +6,297 @@
 // For example, an accordion section may be in a collapsed or expanded state.
 // A message may be in a success or error state.
 // States are generally applied to the same element as a layout rule or applied to the same element as a base module class.
+
+// ----------------------------
+// Breakpoint: 520px
+// ----------------------------
+@media screen and (min-width: 32.5em) {
+  
+}
+
+// ----------------------------
+// Breakpoint: 640px
+// Alters: Utility Bar
+// ----------------------------
+@media screen and (min-width: 40em) {
+  //Utility Bar
+  .utility-bar {
+    .header-email {
+      display: block;
+      float: left;
+      padding-right: 1em;
+      border-right: 1px solid $light;
+    }
+
+    .header-tel {
+      float: left;
+    }
+
+    p {
+      margin-right: 2.5em;
+    }
+  }
+}
+
+// ----------------------------
+// Breakpoint: 728px
+// Alters: Blog Area
+// ----------------------------
+@media screen and (min-width: 45.5em) {
+  //Blog Area
+  .blogspace #blog li {
+    @include span-columns (6, 12);
+    @include nth-omega (2n);
+  }
+}
+
+// ----------------------------
+// Breakpoint: 640px to 816px
+// Alters: Product Grid, Tetimonials
+// ----------------------------
+@media screen and (min-width: 40em) and (max-width: 51em){
+  //Product Grid
+  .grid {
+    padding: 0 3em;
+
+    li {
+      @include span-columns (6, 12);
+      @include nth-omega(2n);
+    }
+
+    .prod-caption {
+      font-size: 0.9em;
+    }
+  }
+  
+  //Testimonials
+  .test-area .grid li{
+    margin: 0 auto;
+    display: block;
+    float: none;
+  }
+}
+
+// ----------------------------
+// Breakpoint: 816px
+// Alters: Product Grid, Testimonials, Promotions, Footer
+// ----------------------------
+@media screen and (min-width: 51em) {
+  //Product Grid
+  .grid {
+    padding: 0 1em;
+
+    li {
+      @include span-columns (3, 12);
+      @include nth-omega(4n);
+    }
+
+    .prod-caption {
+      font-size: 0.85em;
+    }
+  }
+  
+  //Testimonials
+  .test-area {
+    .size-limit-wrapper {
+      max-width: 55.125em;
+      margin: 0 auto;
+    }
+    p {
+      padding-left: 0;
+      margin-top: 12em;
+      @include span-columns (7 omega, 12);
+    }
+
+    .grid {
+      @include span-columns (5, 12);
+      margin-right: 0;
+
+      li {
+        @include span-columns (5, 5);
+        margin: 0 auto;
+        display: block;
+        float: none;
+      }
+    }
+  }
+  
+  //Promotions
+  .promo-area {
+    ul {
+      max-width: 68em;
+
+      li {
+        margin: 1em 0;
+        @include span-columns (4, 12);
+        @include nth-omega (3n);
+      }
+    }
+  }
+
+  //Footer
+  .page-footer{
+    >div{
+      @include clearfix;
+
+      >div {
+        @include span-columns (4, 12);
+        @include nth-omega (3);
+      }
+    }
+
+    ul[role="navigation"]{
+      text-align: left;
+    }
+  }
+}
+
+// ----------------------------
+// Breakpoint: 928px
+// Alters: Utility Bar, Logo + Search, Carousel, Main Navigation
+// ----------------------------
+@media screen and (min-width: 58em) {
+  //Utility Bar
+  .utility-bar p {
+    @include clearfix;
+    >a {
+      display: block;
+      float: right;
+    }
+
+    .hide-on-mobile {
+      display: block;
+      float: right;
+      margin-left: 0.5em;
+      margin-top: 0.45em;
+      font-family: $sans;
+    }
+  }
+  
+  //Logo + Search
+  .logo-search {
+    @include clearfix;
+
+    #logo {
+      float: left;
+      margin-left: 2em;
+
+      img {
+        margin-bottom: 0;
+      }
+    }
+
+    .search-form {
+      float: right;
+      margin-right: 1.6666666666em;
+      margin-top: 7.5em;
+      font-size: 1.2em;
+
+      #search-field {
+        margin-right: 1em;
+      }
+    }
+  }
+  
+  //Carousel
+  .carousel-nav {
+    display: block;
+  }
+
+  //Main Navigation
+  nav[role="navigation"]{
+    .nav-title {
+      display: none;
+    }
+
+    ul.nav {
+      margin: 0;
+      display: table;
+      width: auto;
+      margin: 0 auto;
+
+      .nav-item{
+        display: inline-block;
+        margin: 0 0.76em;
+        height: auto;
+        opacity: 1;
+        pointer-events: all;
+        border: none;
+        position: relative;
+
+        >a {
+          padding: 1em 0;
+        }
+
+        i {
+          display: none;
+        }
+
+        .sub-nav {
+          position: absolute;
+          z-index: $negative;
+          pointer-events: none;
+          margin: 0;
+          margin-top: -1px;
+          width: 12em;
+          left: 50%;
+          margin-left: -6em;
+          height: auto;
+          opacity: 0;
+          background-color: $dark2;
+          border: solid 1px $dark1;
+          @include border-radius (0.5em);
+          @include single-transition(opacity, 0.2s, ease);
+
+          .sub-nav-item {
+            height: auto;
+            background-color: $dark2;
+            border: none;
+            @include clearfix;
+
+            a {
+              padding: 0.8em 0em;
+              margin: 0em 1em;
+              border-top: solid 1px $dark1;
+            }
+
+            &.first a {
+              border: none;
+            }
+          }
+        }
+
+        &:hover .sub-nav {
+          z-index: $over9000;
+          opacity: 1;
+
+          .sub-nav-item {
+            opacity: 1;
+            pointer-events: all;
+          }
+        }
+
+        .hide-on-desktop {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+// ----------------------------
+// Breakpoint: 1088px
+// Alters: Product Grid
+// ----------------------------
+@media screen and (min-width: 68em) {
+  //Product Grid
+  .grid {
+    padding: 0;
+    max-width: 68em;
+    margin: 0 auto;
+
+    .prod-caption {
+      font-size: 0.95em;
+    }
+  }
+}

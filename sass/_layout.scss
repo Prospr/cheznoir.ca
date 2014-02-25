@@ -12,6 +12,22 @@
 .left { float: left; }
 .right { float: right; }
 
+.full-width-wrapper {
+	width: 100%;
+}
+
+.bg-lg {
+	background-color: $dark2;
+}
+
+.bg-dg {
+	background-color: $dark1;
+}
+
+.bg-light {
+	background-color: $light;
+}
+
 /* Styling #site-title as it uses h1 on home page and span on other pages. */
 
 #site-title {
@@ -33,6 +49,7 @@
 	@include container;
 	// @include susy-grid-background;
 	position: relative;
+	max-width: 68em;
 }
 
 // setting box-sizing to what it should be
@@ -50,6 +67,7 @@
 		font-weight: 300;
 		background-color: $dark2;
 		height: 3.5em;
+		@include clearfix;
 
 		.header-email {
 			display: none;
@@ -119,7 +137,7 @@
 	}
 
 	nav[role="navigation"] {
-		margin: 1em 0;
+		margin: 1em auto;
 		background-color: $dark2;
 		min-height: 3.375em;
 		
@@ -165,8 +183,8 @@
 					padding: 0.635em;
 				}
 
-				&.active>a, &.hover>a {
-					color: $lightAccent;
+				&.active>a, &:hover>a {
+					color: $darkAccent;
 				}
 			}
 			
@@ -197,27 +215,32 @@
 // ----------------------------
 
 .page-footer {
-	h2:first-child {
-		margin: 0;
-	}
+	border-top: solid 1px $light;
+	
 	h2 {
 		font-size: 1.5em;
 	}
+
 	ul[role="navigation"]{
 		list-style: none;
 		padding: 0em 2em;
+		text-align: center;
 
 		li {
 			font-family: $sans;
 			margin: 0.3em;
+
+			a:hover {
+				border-bottom: solid 1px $light;
+			}
 		}
 	}
 
 	.social-links {
 		font-size: 2.5em;
-		width: 4em;
-		margin: 0 auto;
+		width: 4.1em;
 		@include horizontal-list;
+		margin: 0 auto;
 	}
 
 	.email-signup {
@@ -244,10 +267,15 @@
 		text-align: center;
 		font-size: 0.7em;
 		color: $dark3;
+		margin: 2em 0;
 
 		a {
 			color: $darkAccent;
 			font-weight: 600;
+
+			&:hover {
+				border-bottom: solid 1px $darkAccent;
+			}
 		}
 	}
 }
@@ -268,11 +296,12 @@
 		list-style: none;
 		padding: 0;
 		padding-bottom: 1.5em;
+		margin-bottom: 0;
 		@include clearfix;
 
 		li {
 			width: 100%;
-			max-width: 30em;
+			max-width: 40em;
 			margin: 0 auto;
 			padding: 1em 2em;
 			
@@ -310,11 +339,12 @@
 .promo-area {
 	ul {
 		list-style: none;
-		padding: 0 1em;
+		padding: 0 2em;
+		@include clearfix;
 
 		li {
 			width: 100%;
-			max-width: 15em;
+			max-width: 20em;
 			margin: 1em auto;
 
 			img {
@@ -332,10 +362,10 @@
 
 .test-area {
 	background-color: $light;
+	@include clearfix;
 
 	h2 {
 		color: $dark1;
-		padding-top: 0.5em;
 	}
 
 	p {
@@ -359,6 +389,7 @@
 	
 	.prod-caption {
 		border: none !important; //override styles in module (only for testimonials)
+		margin-bottom: 0 !important; 
 	}
 
 	.prod-name {
