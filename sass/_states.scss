@@ -52,7 +52,7 @@
 
 // ----------------------------
 // Breakpoint: 640px to 816px
-// Alters: Product Grid, Tetimonials
+// Alters: Product Grid, Tetimonials, Cart Items
 // ----------------------------
 @media screen and (min-width: 40em) and (max-width: 51em){
   //Product Grid
@@ -72,6 +72,19 @@
     }
   }
   
+  //Cart Items
+  .cart-item {
+    @include span-columns (6, 12);
+
+    &:nth-of-type(2n){
+      @include omega;
+    }
+
+    &:nth-of-type(3n){
+      clear: both;
+    }
+  }
+  
   //Testimonials
   .test-area .grid li{
     margin: 0 auto;
@@ -82,7 +95,7 @@
 
 // ----------------------------
 // Breakpoint: 816px
-// Alters: Product Grid, Testimonials, Promotions, Footer
+// Alters: Product Grid, Testimonials, Promotions, Footer, Cart Table
 // ----------------------------
 @media screen and (min-width: 51em) {
   //Product Grid
@@ -152,6 +165,90 @@
 
     ul[role="navigation"]{
       text-align: left;
+    }
+  }
+
+  //Cart Table
+  #cart-table {
+    display: table;
+
+    thead {
+      display: table-header-group;
+      background-color: $dark3;
+    }
+
+    tbody {
+      display: table-row-group;
+      @include clearfix;
+    }
+
+    .cart-item {
+      display: table-row;
+
+      td {
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      .ci-image {
+        width: 10.9375em;
+
+        img {
+          max-width: 20em;
+          margin: 1em auto;
+        }
+      }
+
+      .ci-title {
+        max-width: 20em;
+        border-right: solid 1px $dark3;
+
+        h2 {
+          text-align: left;
+          padding: 3em 1em 3em 0;
+        }
+      }
+
+      .ci-price, .ci-quantity, .ci-total {
+        border-right: solid 1px $dark3;
+        padding: 1em 0.5em;
+      }
+
+      .hide-in-table {
+        display: none;
+      }
+    }
+  }
+
+  //Cart Submit Area
+  .cart-submit-area {
+    margin: 1em 0;
+    @include span-columns (12, 12);
+
+    h3 {
+      @include span-columns (4 omega, 12);
+    }
+    
+    .special-instructions {
+      padding-left: 1.5em;
+      @include span-columns (8, 12);
+
+      p {
+        @include span-columns (8, 8);
+      }
+
+      textarea {
+        @include span-columns (8, 8);
+        max-width: none;
+      }
+    }
+
+    .checkout-buttons {
+      @include span-columns (4 omega, 12);
+
+      input[type="submit"] {
+        margin-top: 0.7em;
+      }
     }
   }
 }
@@ -421,6 +518,10 @@
   }
 
   #product-photos, #product-details, #shopify-product-reviews {
+    padding: 0;
+  }
+
+  .page-title {
     padding: 0;
   }
 }

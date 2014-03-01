@@ -1,0 +1,57 @@
+/* Undo background and gradient */
+body, #main, #container, #header, #footer {
+  background: #1A1A1C !important;
+}
+
+/* Undo overview background and borders */
+#main #overview {
+  background: #1A1A1C;
+  border: none;
+}
+#main #overview > * {
+  border: none;
+}
+#main #thumbs div {
+  border: none;
+}
+
+/* Insert your own logo (upload separately) */
+#logo { 
+  height: 200px;
+  background: url({{ 'logo.png' | asset_url | replace: 'http://','https://' }}) center no-repeat;
+}
+
+#header > h1{
+  text-align:center;
+}
+
+/* Hide the name of the store because we got this nifty logo now */
+
+#header > h1 span.title {
+  display:none;
+}
+
+p {
+  color: #F4F5F5;
+}
+
+h3 {
+  color: #B5141B;
+}
+
+h2 {
+  color: #F4F5F5 !important;
+}
+
+#cost {
+  text-shadow: none !important;
+}
+
+span {
+  color: #F4F5F5 !important;
+}
+
+#info-bar {
+  background-color: #3F3F40 !important;
+  border-bottom: none !important;
+}
