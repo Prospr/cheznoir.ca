@@ -20,6 +20,21 @@
   <link rel="canonical" href="{{ canonical_url }}" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="apple-touch-icon" sizes="57x57" href="{{ 'apple-touch-icon-57x57.png' | asset_url }}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{ 'apple-touch-icon-114x114.png' | asset_url }}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{ 'apple-touch-icon-72x72.png' | asset_url }}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{{ 'apple-touch-icon-144x144.png' | asset_url }}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{{ 'apple-touch-icon-60x60.png' | asset_url }}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{ 'apple-touch-icon-120x120.png' | asset_url }}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ 'apple-touch-icon-76x76.png' | asset_url }}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{ 'apple-touch-icon-152x152.png' | asset_url }}">
+  <link rel="icon" type="image/png" href="{{ 'favicon-196x196.png' | asset_url }}" sizes="196x196">
+  <link rel="icon" type="image/png" href="{{ 'favicon-160x160.png' | asset_url }}" sizes="160x160">
+  <link rel="icon" type="image/png" href="{{ 'favicon-96x96.png' | asset_url }}" sizes="96x96">
+  <link rel="icon" type="image/png" href="{{ 'favicon-16x16.png' | asset_url }}" sizes="16x16">
+  <link rel="icon" type="image/png" href="{{ 'favicon-32x32.png' | asset_url }}" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#b91d47">
+  <meta name="msapplication-TileImage" content="{{ 'mstile-144x144.png' | asset_url }}">
   
   {% include 'open-graph-tags' %}
 
@@ -51,7 +66,7 @@
 
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
 
-  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' | script_tag }}
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js' | script_tag }}
   
 
 </head>
@@ -64,7 +79,7 @@
       
       <div class="full-width-wrapper bg-lg">
         <div class="utility-bar container">
-          <a class="header-email" href="mailto:info@cheznoir.ca">Email: cheznoir.ca</a>
+          <a class="header-email" href="mailto:info@cheznoir.ca">Email: info@cheznoir.ca</a>
           <a class="header-tel" href="tel:4166990699">Tel: (416) 699-0699</a>
 
           {% if shop.customer_accounts_enabled %}
@@ -180,6 +195,12 @@
         </nav>
       </div>
 
+      {% assign promo = pages.frontpage %}
+
+      <div class="rte promo-banner container">
+        {{ promo.content }}
+      </div>
+
     </header>
 
     <div id="main" role="main">
@@ -220,17 +241,16 @@
             <div id="mc_embed_signup">
               <form action="http://cheznoir.us5.list-manage2.com/subscribe/post?u=50abaad9b31137810a8ffde8e&amp;id=f211a1d5f5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                 <div class="mc-field-group">
-                  <label for="mce-EMAIL">Email Address </label>
-                  <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
-                </div>
-                <div class="mc-field-group">
                   <label for="mce-CGENDER">Receive Emails About... </label>
-                  <select name="CGENDER" class="required" id="mce-CGENDER">
-                    <option value=""></option>
+                  <select name="CGENDER" class="required transform-select" id="mce-CGENDER">
                     <option value="Male &amp; Female Clothing">Male &amp; Female Clothing</option>
                     <option value="Female Clothing">Female Clothing</option>
                     <option value="Male Clothing">Male Clothing</option>
                   </select>
+                </div>
+                <div class="mc-field-group">
+                  <label for="mce-EMAIL">Email Address </label>
+                  <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
                 </div>
                 <div id="mce-responses" class="clear">
                   <div class="response" id="mce-error-response" style="display:none"></div>

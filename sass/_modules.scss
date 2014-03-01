@@ -106,6 +106,82 @@
   padding: 0 1.5em;
 }
 
+// ----------------------------
+// Main Menu Styles
+// ----------------------------
+nav[role="navigation"] {
+  margin: 1em auto;
+  background-color: $dark2;
+  min-height: 3.375em;
+  
+  .nav-title {
+    display: block;
+    cursor: pointer;
+    padding: 0.2em 0;
+    @include clearfix;
+
+    div {
+      width: 13.5em;
+      margin: 0 auto;
+      @include clearfix;
+    }
+
+    h2 {
+      float: left;
+      margin: 0;
+      @include no-user-select;
+    }
+  }
+
+  ul.nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: -2em;
+    @include single-transition(all, 0.3s, ease);
+    @include no-user-select;
+
+  >li {
+      text-align: center;
+      font-family: $serif;
+      font-size: 1.2em;
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+      border-top: solid 1px $dark1;
+      @include single-transition(all, 0.3s, ease);
+      
+     >a {
+        display: block;
+        padding: 0.635em;
+      }
+
+      &.active>a, &:hover>a {
+        color: $lightAccent;
+      }
+    }
+    
+    &.menu-open {
+      margin: 0;
+    }
+
+    &.menu-open>li{
+      height: auto;
+      min-height: 2.70833333em;
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    i {
+      @include single-transition(all, 0.3s, ease);
+      margin-left: 0.5em;
+    }
+
+    .has-dropdown.submenu-open i {
+      @include rotate3d(0,0,1,-180deg); 
+    }
+  }
+}
 
 // ----------------------------
 // Sub Menu Styles
@@ -135,7 +211,7 @@
     }
 
     &.active a, &:hover a {
-      color: $darkAccent;
+      color: $lightAccent;
     }
   }
   
@@ -175,6 +251,12 @@
   list-style: none;
   padding: 0 2em;
   @include clearfix;
+
+  p {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 0;
+  }
 
   li {
     width: 100%;
@@ -219,7 +301,283 @@
         font-size: 1.1em;
         display: block;
         font-weight: 300;
+
+        .compare-at-price {
+          color: lighten($dark3, 20%);
+          padding-left: 1em;
+        }
       }
     }
   }
+}
+
+// ----------------------------
+// Collection Header
+// ----------------------------
+.collection-header {
+  padding: 0 2em;
+
+  h1 {
+    border-top: solid 1px $light;
+    margin-bottom: 0.1em;
+  }
+
+  h2 {
+    margin: -0.2em auto 0.2em auto;
+  }
+}
+
+// ----------------------------
+// Pagination
+// ----------------------------
+
+.pagination {
+  margin-top: -1.5em;
+
+  .current {
+    color: $lightAccent;
+  }
+
+  ul {
+    padding: 0 2em;
+    text-align: center;
+    font-family: $sans;
+    font-size: 1.5em;
+    list-style: none;
+    @include horizontal-list;
+    display: table;
+    margin: 0 auto;
+
+    li {
+      margin: 0.5em;
+      >i { // Doesn't select if there's an a tag wrapping - effectively greying inactive links
+        color: $dark3;
+      }
+    }
+  }
+}
+
+.pagination-info {
+  text-align: center;
+  font-weight: 100;
+  margin: 0 auto;
+  padding: 0 2em;
+
+  p {
+    margin: 0;
+  }
+
+  &.border-top p {
+    border-top: solid 1px $light;
+    padding-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  &.border-bottom p {
+    border-bottom: solid 1px $light;
+    padding-bottom: 1em;
+    margin-top: -0.5em;
+    margin-bottom: 1em;
+  }
+}
+
+// ----------------------------
+// Breadcrumbs
+// ----------------------------
+
+#breadcrumb {
+  border-top: solid 1px $light;
+  padding: 1em 0;
+  text-align: center;
+  margin: 0 2em;
+  font-weight: 100;
+  
+  a {
+    color: $darkAccent;
+
+    &:hover {
+      border-bottom: solid 1px $darkAccent;
+    }
+  }
+}
+
+// ----------------------------
+// Product Photo Gallery
+// ----------------------------
+#product-photo-container {
+  max-width: 25em;
+  margin: 0 auto;
+
+  a {
+    pointer-events: none;
+  }
+}
+
+#product-photo-thumbs {
+  display: none;
+}
+
+// ----------------------------
+// Product Details
+// ----------------------------
+#product-details {
+  padding: 1em 1.5em;
+
+  h1 {
+    font-size: 2.5em;
+    font-weight: 300;
+  }
+  
+  #product-price {
+    text-align: center;
+    font-size: 1.8em;
+    margin-top: 0.3em;
+    font-weight: 100;
+
+    .on-sale {
+      color: $lightAccent;
+    }
+
+    .product-compare-price {
+      color: lighten($dark3, 20%);
+    }
+  }
+
+  #stock-number {
+    display: block;
+    text-align: center;
+    font-family: $sans;
+    font-weight: 100;
+    font-size: 1.2em;
+    color: lighten($dark3, 20%);
+  }
+
+  #product-variants {
+    text-align: center;
+
+    label {
+      text-align: center;
+    }
+  }
+
+  #product-add {
+    text-align: center;
+    margin: 2em 0;
+    
+    #quantity {
+      max-width: 3.5em;
+      margin-right: 1em;
+    }
+
+    #add {
+      padding: 0.4em 1em;
+      font-size: 1.5em;
+    }
+  }
+
+  #product-info {
+    border-top: solid 1px $light;
+    border-bottom: solid 1px $light;
+
+    .desc-item {
+      height: 4em;
+      overflow: hidden;
+      margin: 0;
+      border-top: solid 1px $dark3;
+      @include single-transition(all, 0.3s, ease);
+
+      .desc-wrapper {
+        margin-bottom: 1em;
+        @include clearfix;
+      }
+
+      h2 {
+        font-family: $sans;
+        text-align: left;
+        font-size: 1.625em;
+        font-weight: 100;
+        margin: 0;
+        padding: 0.4307692307692308em 0;
+        cursor: pointer;
+        @include no-user-select;
+      }
+    
+      p {
+        font-family: $serif;
+        line-height: 1.7;
+      }
+
+      h3 {
+        color: $darkAccent;
+        font-weight: 100;
+        text-align: left;
+      }
+
+      table {
+        max-width: 30em;
+        margin-bottom: 1.5em;
+
+        tr:first-child {
+          font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+          background-color: lighten($dark1, 3%);
+        }
+
+        td {
+          padding: 0.3em 0.8em;
+        }
+      }
+
+      ul {
+        list-style: disc;
+        padding-left: 1.5em;
+
+        li {
+          margin: 1em 0;
+        }
+      }
+    }
+
+    #about-chlorination a {
+      color: $dark1;
+      background-color: $light;
+      display: block;
+      padding: 1em;
+      margin: 1.5em 0;
+      margin-bottom: 3em;
+      max-width: 24em;
+      text-align: center;
+      font-weight: 600;
+      @include border-radius(0.5em);
+    }
+  }
+}
+
+// ----------------------------
+// Next & Previous Buttons on Collection Page
+// ----------------------------
+#next-or-prev {
+  @include clearfix;
+
+  a {
+    color: $dark1;
+    background-color: $light;
+    display: block;
+    padding: 0.8em;
+    margin: 1.5em 0;
+    margin-bottom: 3em;
+    max-width: 24em;
+    text-align: center;
+    font-weight: 400;
+    @include border-radius(0.5em);
+  }
+}
+
+// ----------------------------
+// Directed Edge - Product Recommendation System
+// ----------------------------
+#directededge-blocks {
+  clear: both;
 }

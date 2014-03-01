@@ -1,0 +1,45 @@
+<div id="breadcrumb" class="container">
+  <a href="/" class="homepage-link" title="Back to the frontpage">Home</a>
+  {% if template contains 'product' %}
+    {% if collection %}            
+      <span class="separator">&raquo;</span> 
+      {% if collection.handle %}
+         {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+         {{ collection.title | link_to: url }}
+      {% endif %}
+    {% endif %}
+    <span class="separator">&raquo;</span>
+    <span class="page-title">{{ product.title }}</span>
+  {% elsif template contains 'collection' and collection.handle %}
+      {% if current_tags %}
+        <span class="separator">&raquo;</span>
+        {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+        {{ collection.title | link_to: url }}
+        <span class="separator">&raquo;</span>
+        {% assign subcat_list = collection.title | handle %}
+        {%for tag in current_tags %}
+          {%for subcat in linklists[subcat_list].links %}
+            {% assign subcatHandle = subcat.title | handle %}
+            {% assign tagHandle = tag | handle %}
+            {% if tagHandle == subcatHandle %}
+              {{ subcat.title }}
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      {% else %}
+        <span class="separator">&raquo;</span>
+        <span class="page-title">{{ collection.title }}</span>
+      {% endif %}
+  {% elsif template == 'article' %}
+      <span class="separator">&raquo;</span> 
+      {{ blog.title | link_to: blog.url }}
+      <span class="separator">&raquo;</span>
+      <span class="page-title">{{ article.title }}</span>
+  {% elsif template contains 'page' %}
+     <span class="separator">&raquo;</span>
+     <span class="page-title">{{ page.title }}</span>
+  {% else %}
+     <span class="separator">&raquo;</span>
+     <span class="page-title">{{ page_title }}</span>
+  {% endif %}
+</div>

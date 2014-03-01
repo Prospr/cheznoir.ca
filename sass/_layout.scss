@@ -136,87 +136,12 @@
 		}
 	}
 
-	nav[role="navigation"] {
-		margin: 1em auto;
-		background-color: $dark2;
-		min-height: 3.375em;
-		
-		.nav-title {
-			display: block;
-			cursor: pointer;
-			padding: 0.2em 0;
-			@include clearfix;
-
-			div {
-				width: 13.5em;
-				margin: 0 auto;
-				@include clearfix;
-			}
-
-			h2 {
-				float: left;
-				margin: 0;
-				@include no-user-select;
-			}
-		}
-
-		ul.nav {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-			margin-top: -2em;
-			@include single-transition(all, 0.3s, ease);
-			@include no-user-select;
-
-		>li {
-				text-align: center;
-				font-family: $serif;
-				font-size: 1.2em;
-				height: 0;
-				opacity: 0;
-				pointer-events: none;
-				border-top: solid 1px $dark1;
-				@include single-transition(all, 0.3s, ease);
-				
-			 >a {
-					display: block;
-					padding: 0.635em;
-				}
-
-				&.active>a, &:hover>a {
-					color: $darkAccent;
-				}
-			}
-			
-			&.menu-open {
-				margin: 0;
-			}
-
-			&.menu-open>li{
-				height: auto;
-				min-height: 2.70833333em;
-				opacity: 1;
-				pointer-events: all;
-			}
-
-			i {
-				@include single-transition(all, 0.3s, ease);
-				margin-left: 0.5em;
-			}
-
-			.has-dropdown.submenu-open i {
-				@include rotate3d(0,0,1,-180deg); 
-			}
-		}
-	}
-
 // ----------------------------
 // Footer
 // ----------------------------
 
 .page-footer {
-	border-top: solid 1px $light;
-	
+
 	h2 {
 		font-size: 1.5em;
 	}
@@ -362,6 +287,7 @@
 
 .test-area {
 	background-color: $light;
+	padding: 0 2em;
 	@include clearfix;
 
 	h2 {

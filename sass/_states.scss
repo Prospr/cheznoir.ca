@@ -61,7 +61,10 @@
 
     li {
       @include span-columns (6, 12);
-      @include nth-omega(2n);
+
+      &:nth-of-type(2n) {
+        @include omega;
+      }
     }
 
     .prod-caption {
@@ -88,7 +91,9 @@
 
     li {
       @include span-columns (3, 12);
-      @include nth-omega(4n);
+      &:nth-of-type(4n) {
+        @include omega;
+      }
     }
 
     .prod-caption {
@@ -155,7 +160,7 @@
 // Breakpoint: 928px
 // Alters: Utility Bar, Logo + Search, Carousel, Main Navigation
 // ----------------------------
-@media screen and (min-width: 58em) {
+@media screen and (min-width: 60.375em) {
   //Utility Bar
   .utility-bar p {
     @include clearfix;
@@ -214,6 +219,10 @@
       display: table;
       width: auto;
       margin: 0 auto;
+
+      &.menu-open {
+        margin: 0 auto;
+      }
 
       .nav-item{
         display: inline-block;
@@ -282,11 +291,108 @@
       }
     }
   }
+  
+  //Breadcrumbs
+  #breadcrumb {
+    text-align: left;
+  }
+
+  //Product Images
+  #product-photos {
+    padding-left: 2em;
+    @include span-columns(5, 12);
+    @include clearfix;
+
+    a {
+      pointer-events: all;
+    }
+
+    #product-photo-container {
+      margin: 0;
+      max-width: none;
+    }
+    
+    //These were scrapped due to carousel image swap problems.
+    #product-photo-thumbs {
+      @include span-columns(5, 5);
+      @include clearfix;
+
+      .product-photo-thumb {
+        @include span-columns(2, 6);
+        @include nth-omega(3n);
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+
+    .carousel-nav {
+      a {
+        @include border-radius(0);
+      }
+
+      .prev {
+        left: 0;
+        bottom: 0;
+        top: auto;
+      }
+
+      .next {
+        right: 0;
+        bottom: 0;
+        top: auto;
+      }
+    }
+  }
+
+  //Product Details
+  #product-details {
+    padding: 0;
+    padding-right: 2em;
+    @include span-columns(7 omega,12);
+
+    h1 {
+      text-align: left;
+      margin-top: -0.35em;
+    }
+
+    #stock-number {
+      margin-bottom: 1em;
+    }
+  }
+
+  #shopify-product-reviews {
+    clear: left !important; // Preventing the shopify stylesheet from fucking up our layout.
+    padding-left: 2em;
+    @include span-columns(5, 12);
+
+    .spr-review-header-title {
+      font-family: $serif;
+      font-size: 1.1em;
+      text-align: left;
+    }
+
+    .spr-summary {
+      text-align: center;
+    }
+
+    .spr-summary-actions-newreview {
+      float: none;
+    }
+
+    .spr-summary-actions-newreview:before, .spr-summary-actions-newreview:after {
+      content: " ";
+      display: table;
+    }
+  }
 }
 
 // ----------------------------
 // Breakpoint: 1088px
-// Alters: Product Grid
+// Alters: Product Grid, Collection Header, Pagination Info
 // ----------------------------
 @media screen and (min-width: 68em) {
   //Product Grid
@@ -298,5 +404,23 @@
     .prod-caption {
       font-size: 0.95em;
     }
+  }
+  
+  //Collection Header
+  .collection-header {
+    padding: 0;
+  }
+  
+  //Pagination Info
+  .pagination-info {
+    padding: 0;
+  }
+
+  #breadcrumb {
+    margin: 0;
+  }
+
+  #product-photos, #product-details, #shopify-product-reviews {
+    padding: 0;
   }
 }

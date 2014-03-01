@@ -25,7 +25,7 @@ Note that comment.created_at will only be defined if the comment did not have an
 
 <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
 
-<div class="blog-article">
+<div class="blog-article container">
   <h1 class="blog-article-title">
     {{ article.title }}
   </h1>
@@ -53,7 +53,7 @@ Note that comment.created_at will only be defined if the comment did not have an
 </div>
 
 {% if blog.comments_enabled? %}
-<div id="comments">
+<div id="comments" class="container">
 
   {% comment %}If a comment was just submitted with no blank field.{% endcomment %}
   {% if comment and comment.created_at %}
@@ -151,7 +151,7 @@ Note that comment.created_at will only be defined if the comment did not have an
 {% endif %}
 
 {% if blog.next_article or blog.previous_article %}
-<p class="clearfix"> 
+<p class="clearfix container"> 
   {% if blog.next_article %}
   <span class="left">{{ '&larr; Next Post' | link_to: blog.next_article }}</span>
   {% endif %}    

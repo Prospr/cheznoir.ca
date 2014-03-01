@@ -1,0 +1,109 @@
+/*
+  transformSelect CSS
+*/
+.transformSelect
+{
+  clear : both;
+  max-width: 13.3em;
+  margin: 0 auto;
+}
+.transformSelect li
+{
+  position: relative;
+  list-style: none;
+}
+.transformSelect span, .transformSelect input[type=text] {
+  background: #ffffff no-repeat url( #{'{{ "transformselect.gif" | asset_url }}'} ) right center; 
+  border: 1px solid #CCCCCC;
+  color: #575757;
+  cursor: pointer;
+  display: block;
+  left: 0;
+  margin: 0;
+  padding: 0.4em 1.5em 0.4em 0.5em;
+  top: 0;
+  line-height: 20px;
+  @include border-radius (5px);
+}
+.transformSelect li.open span, .transformSelect li.open input[type=text]
+{
+  @include border-radius (0);
+}
+
+.transformSelect li.open>span {
+  @include border-radius (5px 5px 0 0);
+}
+.transformSelect input[type=text]
+{
+  //width: 188px;
+}
+.transformSelect ul
+{
+  position: absolute;
+  border: 1px solid #CCCCCC;
+  border-top: 0;
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+}
+.transformSelect ul span
+{
+  border: 0;
+  background: #ffffff;
+}
+.transformSelect ul span:hover
+{
+  background: #dddddd;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+}
+  .transformSelect ul li
+  {
+    height: auto;
+  }
+    .transformSelect li.group ul
+    {
+      position: static;
+      border: 1px solid #dddddd;
+      border-right: 0;
+      border-left: 0;
+      border-radius: 0;
+      -webkit-border-radius: 0;
+    }
+    .transformSelect li.group span
+    {
+      font-style: italic;
+      border-radius: 0;
+      -webkit-border-radius: 0;
+      background: #F7F7F7;
+    }
+    .transformSelect li.group > span
+    {
+      background: #eeeeee;
+      border-top: 1px solid #dddddd;
+    }
+    .transformSelect li.group  ul span
+    {
+      text-indent : 10px;
+      font-style: normal;
+    }
+    .transformSelect ul li.group ul span:hover
+    {
+      background: #dddddd;
+    }
+    .transformSelect input[type=checkbox]
+    {
+      position: relative;
+      top: 2px;
+      margin: 0 5px 0 0;
+      cursor: pointer;
+    }
+/* Page CSS */
+ul
+{
+  margin  : 0;
+  padding : 0;  
+  list-style  : none;
+  outline: none;
+  resize: none;
+}
